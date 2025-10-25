@@ -1,7 +1,18 @@
-# train.py
-from transformers import Trainer, TrainingArguments, DataCollatorForLanguageModeling
-from dataset import load_and_tokenize_dataset
+import wandb
+from huggingface_hub import login
 from model import load_model
+from dataset import load_and_tokenize_dataset
+from transformers import Trainer, TrainingArguments, DataCollatorForLanguageModeling
+
+# -------------------------------
+# Initialize wandb for logging
+# -------------------------------
+wandb.init(project="Fine-Tuned LLaMa", name="Fine-Tuned LLaMa", config={
+    "batch_size": 1,
+    "gradient_accumulation_steps": 16,
+    "learning_rate": 2e-4,
+    "num_train_epochs": 3,
+})
 
 # -------------------------------
 # Load tokenized dataset & tokenizer
@@ -34,8 +45,8 @@ training_args = TrainingArguments(
     save_strategy="epoch",
     eval_strategy="epoch",
     save_total_limit=2,
-    report_to="tensorboard",
-    load_best_model_at_end=True
+    report_to="wandb",  # Only report to wandb
+    load_best_model_at_end=True,
 )
 
 # -------------------------------
@@ -60,3 +71,6 @@ trainer.train()
 # -------------------------------
 model.save_pretrained("./lora_out_adapter")
 print("LoRA adapter saved!")
+
+# Finish the wandb run
+wandb.finish()
