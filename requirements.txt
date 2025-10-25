@@ -1,0 +1,10 @@
+peft
+scipy
+wandb
+datasets
+evaluate
+torch>=2.0
+tensorboard
+bitsandbytes
+accelerate>=0.20
+transformers>=4.35
