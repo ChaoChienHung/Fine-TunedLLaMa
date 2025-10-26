@@ -38,7 +38,9 @@ def load_and_tokenize_dataset():
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
 
+    # ----------
     # Tokenize
+    # ----------
     def tokenize(example):
         return tokenizer(example["text"], truncation=True, max_length=MAX_LENGTH, padding="max_length")
     
