@@ -8,7 +8,7 @@ from transformers import Trainer, TrainingArguments, DataCollatorForLanguageMode
 # -------------------------------
 # Get today's date in YYYY-MM-DD format
 # -------------------------------
-today_date = datetime.today().strftime('%Y-%m-%d')
+today_date = datetime.today().strftime('%Y-%m-%d %H-%M-%S')
 
 # -------------------------------
 # Initialize wandb for logging
