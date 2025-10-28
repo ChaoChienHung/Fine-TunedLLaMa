@@ -1,17 +1,14 @@
 import os
 from datasets import load_dataset
+from config import DATA_DIR, MODEL, MAX_LENGTH
 from transformers import AutoTokenizer
 
-CACHE_DIR = "./cache/"
-MODEL_NAME = "meta-llama/Llama-2-7b-hf"
-MAX_LENGTH = 2048
-
 # Ensure cache exists
-os.makedirs(CACHE_DIR, exist_ok=True)
+os.makedirs(DATA_DIR, exist_ok=True)
 
 def load_and_tokenize_dataset():
     # Load Dolly 15k
-    ds = load_dataset("databricks/databricks-dolly-15k", cache_dir=CACHE_DIR)
+    ds = load_dataset("databricks/databricks-dolly-15k", cache_dir=DATA_DIR)
     
     # Filter empty responses
     ds = ds['train'].filter(lambda x: bool(x['response'] and x['response'].strip()))
@@ -31,7 +28,7 @@ def load_and_tokenize_dataset():
     test_ds = val_test_split["test"]
 
     # Load tokenizer
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, use_fast=False, cache_dir=CACHE_DIR)
+    tokenizer = AutoTokenizer.from_pretrained(MODEL, use_fast=False, cache_dir=DATA_DIR)
     if tokenizer.eos_token is None:
         tokenizer.eos_token = "</s>"
 

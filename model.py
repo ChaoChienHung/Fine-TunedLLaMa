@@ -1,13 +1,12 @@
 import wandb
+from config import MODEL
 from transformers import AutoModelForCausalLM, BitsAndBytesConfig
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
-
-MODEL_NAME = "meta-llama/Llama-2-7b-hf"
 
 def load_model(tokenizer):
     # Initialize wandb logging (optional, but useful for tracking model configs)
     wandb.config.update({
-        "model_name": MODEL_NAME,
+        "model_name": MODEL,
         "quantization": "8-bit",
         "lora_r": 16,
         "lora_alpha": 32,
@@ -20,7 +19,7 @@ def load_model(tokenizer):
     # Load in 8-bit mode for VRAM efficiency
     bnb_config = BitsAndBytesConfig(load_in_8bit=True)
     model = AutoModelForCausalLM.from_pretrained(
-        MODEL_NAME,
+        MODEL,
         quantization_config=bnb_config,
         device_map="auto"
     )

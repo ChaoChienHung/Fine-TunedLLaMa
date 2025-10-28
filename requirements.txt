@@ -8,6 +8,7 @@ alpaca-eval
 tensorboard
 bitsandbytes
 sentencepiece
+openai>=1.15.0
 accelerate>=0.20
 transformers>=4.35
 fschat[model_worker,webui]

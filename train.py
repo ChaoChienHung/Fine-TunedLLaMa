@@ -1,22 +1,18 @@
 import wandb
 from model import load_model
-from datetime import datetime
+from config import DATETIME
 from huggingface_hub import login
 from dataset import load_and_tokenize_dataset
 from transformers import Trainer, TrainingArguments, DataCollatorForLanguageModeling
 
-# -------------------------------
-# Get today's date in YYYY-MM-DD format
-# -------------------------------
-today_date = datetime.today().strftime('%Y-%m-%d %H-%M-%S')
 
 # -------------------------------
 # Initialize wandb for logging
 # -------------------------------
-wandb.init(project="Fine-Tuned LLaMa", name=f"Fine-Tuned LLaMa - {today_date}", config={
+wandb.init(project="Fine-Tuned LLaMa", name=f"Fine-Tuned LLaMa - {DATETIME}", config={
     "batch_size": 1,
     "gradient_accumulation_steps": 16,
-    "learning_rate": 2e-4,
+    "learning_rate": 1e-5,
     "num_train_epochs": 3,
 })
 
@@ -39,11 +35,11 @@ data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False)
 # Training arguments
 # -------------------------------
 training_args = TrainingArguments(
-    output_dir=f"./lora_out_{today_date}",
+    output_dir=f"./lora_out_{DATETIME}",
     per_device_train_batch_size=1,
     per_device_eval_batch_size=1,
     gradient_accumulation_steps=16,  # effective batch ~16
-    learning_rate=2e-4,
+    learning_rate=1e-5,
     num_train_epochs=3,
     fp16=True,
     logging_dir="./logs",
@@ -75,7 +71,7 @@ trainer.train()
 # -------------------------------
 # Save LoRA adapter only with today's date
 # -------------------------------
-model.save_pretrained(f"./lora_out_adapter_{today_date}")
+model.save_pretrained(f"./lora_out_adapter_{DATETIME}")
 print("LoRA adapter saved!")
 
 # Finish the wandb run
