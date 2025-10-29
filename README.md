@@ -1,4 +1,4 @@
-# Fine‑TunedLLaMa
+# Fine‑Tuned LLaMa
 
 This repository is a practice project for fine‑tuning the LLaMA‑2 (7B) model using parameter‑efficient fine‑tuning (PEFT) via LoRA, trained on the databricks/dolly‑15k dataset. The goal is to demonstrate loss convergence and observable performance uplift on benchmarks such as AlpacaEval2 and MT‑Bench compared to the base model.
 
@@ -58,7 +58,7 @@ python train.py
 
 Multi‑GPU (DDP):
 ```bash
-python train_ddp.py --num_gpus N
+python train_ddp.py
 ```
 ### After Training
 
