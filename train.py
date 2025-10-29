@@ -12,7 +12,7 @@ from transformers import Trainer, TrainingArguments, DataCollatorForLanguageMode
 wandb.init(project="Fine-Tuned LLaMa", name=f"Fine-Tuned LLaMa - {DATETIME}", config={
     "batch_size": 1,
     "gradient_accumulation_steps": 16,
-    "learning_rate": 1e-5,
+    "learning_rate": 1e-4,
     "num_train_epochs": 3,
 })
 
@@ -39,7 +39,7 @@ training_args = TrainingArguments(
     per_device_train_batch_size=1,
     per_device_eval_batch_size=1,
     gradient_accumulation_steps=16,  # effective batch ~16
-    learning_rate=1e-5,
+    learning_rate=1e-4,
     num_train_epochs=3,
     fp16=True,
     logging_dir="logs",
