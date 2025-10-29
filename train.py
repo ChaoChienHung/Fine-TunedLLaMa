@@ -35,7 +35,7 @@ data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False)
 # Training arguments
 # -------------------------------
 training_args = TrainingArguments(
-    output_dir=os.path.join(MODEL_DIR, f"lora_out_adapter_{DATETIME}"),
+    output_dir=os.path.join(MODEL_DIR, f"lora_out_adapter_{DATETIME}", "checkpoints"),
     per_device_train_batch_size=1,
     per_device_eval_batch_size=1,
     gradient_accumulation_steps=16,  # effective batch ~16
@@ -71,7 +71,7 @@ trainer.train()
 # -------------------------------
 # Save LoRA adapter only with today's date
 # -------------------------------
-model.save_pretrained(os.path.join(MODEL_DIR, f"lora_out_adapter_{DATETIME}"))
+model.save_pretrained(os.path.join(MODEL_DIR, f"lora_out_adapter_{DATETIME}", "adapter"))
 print("LoRA adapter saved!")
 
 # Finish the wandb run

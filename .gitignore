@@ -2,7 +2,7 @@
 /cache
 /wandb
 Assignment7.md
-__pycache__/model.cpython-312.pyc
+/__pycache__
 __pycache__/model.cpython-313.pyc
 __pycache__/dataset.cpython-312.pyc
 __pycache__/dataset.cpython-313.pyc
