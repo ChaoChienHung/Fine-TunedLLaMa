@@ -1,7 +1,7 @@
 import os
 from datasets import load_dataset
 from transformers import AutoTokenizer
-from config import DATA_DIR, MODEL, MAX_LENGTH
+from config import TOKENIZER_DIR, MODEL, MAX_LENGTH, DATA_DIR
 
 # Ensure cache exists
 os.makedirs(DATA_DIR, exist_ok=True)
@@ -22,7 +22,7 @@ def load_and_tokenize_dataset():
     val_ds = val_test_split["train"]
     test_ds = val_test_split["test"]
 
-    tokenizer = AutoTokenizer.from_pretrained(MODEL, use_fast=False, cache_dir=DATA_DIR)
+    tokenizer = AutoTokenizer.from_pretrained(MODEL, use_fast=False, cache_dir=TOKENIZER_DIR)
     if tokenizer.eos_token is None:
         tokenizer.eos_token = "</s>"
 

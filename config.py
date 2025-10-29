@@ -13,7 +13,7 @@ MODEL_DIR = os.path.join(CACHE_DIR, "model")
 TOKENIZER_DIR = os.path.join(CACHE_DIR, "tokenizer")
 
 
-# --------
+
 # Model
 # --------
 MODEL = os.path.join("meta-llama", "Llama-2-7b-hf")
