@@ -22,7 +22,6 @@ This repository is a practice project for fine‑tuning the LLaMA‑2 (7B) mod
 - `train_ddp.py` – Training script supporting distributed data‑parallel (DDP) training for multiple GPUs.  
 - `merge_lora.py` – Utility to merge the LoRA weights back into model (for inference or deployment).  
 - `requirements.txt` – Python dependencies for the project.  
-- `.gitignore` – Standard git ignore file.  
 
 ---
 
@@ -65,7 +64,7 @@ python train_ddp.py --num_gpus N
 
 You can merge the LoRA weights into the base model for inference using:
 ```bash
-python merge_lora.py --pretrained_model_path <path> --lora_weights_path <path> --output_path <merged_model_path>
+python -m utils.merge_lora                                              
 ```
 
 Then use the merged model for inference or deployment.

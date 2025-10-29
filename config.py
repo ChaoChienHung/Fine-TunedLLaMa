@@ -10,9 +10,7 @@ CACHE_DIR = "cache"
 DATA_DIR = os.path.join(CACHE_DIR, "data")
 MODEL_DIR = os.path.join(CACHE_DIR, "model")
 TOKENIZER_DIR = os.path.join(CACHE_DIR, "tokenizer")
-LORA_DIR = os.path.join(MODEL_DIR, "adapter_2025-10-26/checkpoint-1128")
-
-
+LORA_DIR = os.path.join(MODEL_DIR, "adapter_2025-10-25/adapter")
 
 # Model
 # --------

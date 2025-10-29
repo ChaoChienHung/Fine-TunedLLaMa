@@ -3,10 +3,10 @@ from datasets import load_dataset
 from transformers import AutoTokenizer
 from config import TOKENIZER_DIR, MODEL, MAX_LENGTH, DATA_DIR
 
-# Ensure cache exists
-os.makedirs(DATA_DIR, exist_ok=True)
-
 def load_and_tokenize_dataset():
+    # Ensure cache exists
+    os.makedirs(DATA_DIR, exist_ok=True)
+
     ds = load_dataset("databricks/databricks-dolly-15k", cache_dir=DATA_DIR)
     ds = ds['train'].filter(lambda x: bool(x['response'] and x['response'].strip()))
     
