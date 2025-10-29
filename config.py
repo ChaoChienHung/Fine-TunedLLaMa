@@ -7,10 +7,10 @@ from datetime import datetime
 # ---------
 CACHE_DIR = "cache"
 
-LORA_DIR = "lora_out_adapter"
 DATA_DIR = os.path.join(CACHE_DIR, "data")
 MODEL_DIR = os.path.join(CACHE_DIR, "model")
 TOKENIZER_DIR = os.path.join(CACHE_DIR, "tokenizer")
+LORA_DIR = os.path.join(MODEL_DIR, "lora_out_adapter")
 
 
 
