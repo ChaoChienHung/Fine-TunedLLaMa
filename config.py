@@ -5,7 +5,9 @@ from datetime import datetime
 # ---------
 # Cache
 # ---------
-CACHE_DIR = "./cache/"
+CACHE_DIR = "cache"
+
+LORA_DIR = "lora_out_adapter"
 DATA_DIR = os.path.join(CACHE_DIR, "data")
 MODEL_DIR = os.path.join(CACHE_DIR, "model")
 TOKENIZER_DIR = os.path.join(CACHE_DIR, "tokenizer")
@@ -14,9 +16,7 @@ TOKENIZER_DIR = os.path.join(CACHE_DIR, "tokenizer")
 # --------
 # Model
 # --------
-MODEL = "meta-llama/Llama-2-7b-hf"
-LORA_PATH = "./lora_out_adapter"
-
+MODEL = os.path.join("meta-llama", "Llama-2-7b-hf")
 
 # ----------------
 # Hyperparameters
