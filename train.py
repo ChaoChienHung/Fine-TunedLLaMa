@@ -24,7 +24,7 @@ train_tokenized, val_tokenized, test_tokenized, tokenizer = load_and_tokenize_da
 # -------------------------------
 # Load model with LoRA
 # -------------------------------
-model = load_model(tokenizer, cache_dir=os.path.join(CACHE_DIR, MODEL_DIR))
+model = load_model(tokenizer, cache_dir=MODEL_DIR)
 
 # -------------------------------
 # Data collator for causal LM
@@ -61,7 +61,7 @@ trainer = Trainer(
     eval_dataset=val_tokenized,
     tokenizer=tokenizer,
     data_collator=data_collator,
-    cache_dir=os.path.join(CACHE_DIR, MODEL_DIR)
+    cache_dir=MODEL_DIR
 )
 
 # -------------------------------
@@ -72,7 +72,7 @@ trainer.train()
 # -------------------------------
 # Save LoRA adapter only with today's date
 # -------------------------------
-model.save_pretrained(f"{LORA_DIR}_{DATETIME}")
+model.save_pretrained(os.path.join(f"{LORA_DIR}_{DATETIME}"))
 print("LoRA adapter saved!")
 
 # Finish the wandb run

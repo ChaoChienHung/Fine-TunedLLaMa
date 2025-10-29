@@ -4,7 +4,7 @@ from config import MODEL, CACHE_DIR, MODEL_DIR
 from transformers import AutoModelForCausalLM, BitsAndBytesConfig
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 
-def load_model(tokenizer, cache_dir=os.path.join(CACHE_DIR, MODEL_DIR)):
+def load_model(tokenizer, cache_dir=MODEL_DIR):
     # Initialize wandb logging (optional, but useful for tracking model configs)
     wandb.config.update({
         "model_name": MODEL,
@@ -23,7 +23,7 @@ def load_model(tokenizer, cache_dir=os.path.join(CACHE_DIR, MODEL_DIR)):
         MODEL,
         quantization_config=bnb_config,
         device_map="auto",
-        cache_dir=os.path.join(CACHE_DIR, MODEL_DIR)
+        cache_dir=cache_dir
     )
     
     # Resize embeddings if tokenizer was updated
