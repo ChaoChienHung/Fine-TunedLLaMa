@@ -11,9 +11,9 @@ def load_and_tokenize_dataset():
     ds = ds['train'].filter(lambda x: bool(x['response'] and x['response'].strip()))
     
     def format_example(x):
-        return {"text": f"### Instruction:\n{x['instruction']}\n\n"
-                        f"### Context:\n{x['context']}\n\n"
-                        f"### Response:\n{x['response']}"}
+        context_str = f"\n\n### Context:\n{x['context']}" if x.get('context') else ""
+        return {"text": f"### Instruction:\n{x['instruction']}{context_str}\n\n### Response:\n{x['response']}"}
+    
     ds = ds.map(format_example)
     
     ds_split = ds.train_test_split(test_size=0.2, seed=42)
